@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action=""  align="center">
+ <table bgcolor="cyan" bordercolor="red" align="center">
+            <tr>
+        <th><label for="fname" >First Name</label></th>
+        <td><input type="text" name="fname" id="fname"></td>
+</tr>
+<tr>
+        <th><label for="fname">Last Name</label></th>
+        <td><input type="text" name="lname" id="lname"></td>
+</tr>
+
+<tr>
+        <th><label for="fname">Email</label></th>
+        <td><input type="text" name="Email" id="Email"></td>
+</tr>
+<tr>
+    <th><label for="pass">Password</label></th>
+    <td><input type="text" name="pass" id="pass"></td>
+</tr>
+
+<tr>
+    <th><label for="Skills">Skills</label></th>
+    <td><input type="checkbox" name="skill" id="skills" value="java">java</td>
+    <td><input type="checkbox" name="skill" id="skills" value="php">php</td>
+    <td><input type="checkbox" name="skill" id="skills" value="python">python</td>
+    <td><input type="checkbox" name="skill" id="skills" value="laravel">laravel</td>
+</tr>
+
+
+
+    </table>
+<tr>
+    <th><label for="gender">Gender</label></th>
+    <select name="Gender" id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="other">Other</option>
+    </select>
+</tr>
+<input type="submit" value="Register">
+</form>
+
+
+
+</body>
+</html>
+
+
+
+<!-- // webservlet -->
+package abc;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/myurl")
+
+public class Myservlet extends HttpServlet {
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+		 String fname = req.getParameter("fname");
+		 String lname = req.getParameter("lname");
+		 String email = req.getParameter("Email");
+		 String pass = req.getParameter("pass");
+		 String gender = req.getParameter("Gender");
+		 
+		 String s[] = req.getParameterValues("skill");
+		 
+		 PrintWriter p = res.getWriter();
+		 
+		 p.println("First Name = "+fname);
+		 p.println("Last Name = "+lname);
+		 p.println("Email  = "+email);
+		 p.println("Password = "+pass);
+		 p.println("Gender = "+gender);
+		 p.println("Do post methord");
+		 
+		if(s!=null) {
+			p.println("Your Skills : ");
+			
+			for(String s1 : s) {
+				p.println(s1);
+			}
+		}
+		else {
+			p.println("No skill Checked");
+		}
+		 
+}
+	
+
+public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	
+	 String fname = req.getParameter("fname");
+	 String lname = req.getParameter("lname");
+	 String email = req.getParameter("Email");
+	 String pass = req.getParameter("pass");
+	 String gender = req.getParameter("Gender");
+	 
+	 String s[] = req.getParameterValues("skill");
+	 
+	 PrintWriter p = res.getWriter();
+	 
+	 p.println("First Name = "+fname);
+	 p.println("Last Name = "+lname);
+	 p.println("Email  = "+email);
+	 p.println("Password = "+pass);
+	 p.println("Gender = "+gender);
+	 p.println("Do Get methord");
+	 
+	if(s!=null) {
+		p.println("Your Skills : ");
+		
+		for(String s1 : s) {
+			p.println(s1);
+		}
+	}
+	else {
+		p.println("No skill Checked");
+	}
+	 
+}
+
+}
